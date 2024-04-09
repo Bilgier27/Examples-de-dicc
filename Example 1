@@ -1,0 +1,51 @@
+"""
+Una transportadora requiere el desarrollo de una aplicacion que permita llevar un registro de los despachos de sus vehiculos teniendo en cuenta lo siguiente
+1. Placa del vehiculo
+2. Descripcion del vehiculo
+3. Nombre del conductor
+4. Contacto del conductor
+5. Ruta 
+6. Descripcion de la carga
+7. Numero de despacho se genera de forma automatica 
+Dicha informacion debe quedar registrada en un diccionario
+el sistema debe realizar:
+1. Registro de salidas
+2. Mostrar salida
+"""
+mi_diccionario = {}
+import os
+sw = True
+
+def fnt_registro(diccionario, Placa, Descripcion_del_vehiculo, Nombre, Contacto, Ruta, Descripcion_de_la_carga):
+    if Nombre == '' or Descripcion_del_vehiculo == '' or Placa == '' or Ruta == '' or Descripcion_de_la_carga == '' or Contacto == '':
+        enter = input('Debe diligenciar toda la información solicitada <ENTER>')
+    else:
+        diccionario[Nombre] = {'Placa': Placa, 'Descripcion': Descripcion_del_vehiculo, 'Ruta': Ruta, 'Descripcion_de_la_carga': Descripcion_de_la_carga, 'Contacto': Contacto}
+        enter = input(f'\nLa persona {Nombre} ha registrado el vehiculo con éxito <ENTER>')
+
+def fnt_selector(op):
+    global mi_diccionario
+    if op == '1':
+        os.system('cls')
+        Nombre = input('Nombre:  ')
+        Placa = input('Placa:  ')
+        Descripcion_del_vehiculo = input('Descripcion:  ')
+        Contacto = input('Contacto:' )
+        Ruta = input('Ruta: ')
+        Descripcion_de_la_carga = input('Descripcion_de_la_carga: ')
+        fnt_registro(mi_diccionario, Placa, Descripcion_del_vehiculo, Nombre, Ruta, Contacto, Descripcion_de_la_carga)
+
+while sw == True:
+    os.system('cls')
+    opcion = input('1. Registrar salidas\n2. Mostrar salidas\n3. Salir\n- >  ')
+    if opcion == '1':
+        fnt_selector(opcion)
+    elif opcion == '2':
+        os.system('cls')
+        print('\nCantidad de registros: ',len(mi_diccionario),'\n')
+        for clave, valor in mi_diccionario.items():
+            print(f"{clave}: {valor}")
+        enter = input('\n\nPresione ENTER para continuar...')
+    elif opcion == '3':
+        sw = False
+        
