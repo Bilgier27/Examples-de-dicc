@@ -1,0 +1,42 @@
+"""
+Una Empresa dedicada a la distribución de mercancía requiere el desarrollo de un aplicativo que permita registrar los pedidos solicitados por los diferentes clientes dentro de los cuales se tiene la siguiente información: 
+Nombre del cliente, dirección, contacto, sexo, descripción de la casa o lugar para guiar al personal de entrega. Adicional a ello se debe colocar el nombre del producto, referencia y cantidades a solicitar. Todo esto debe quedar registrado en un diccionario y debe tener la posibilidad de ver todos los pedidos realizados.
+"""
+Dicc_empresa = {}
+import os
+sw = True
+
+def fnt_registro(diccionario, Nombre, Direccion, Contacto, Sexo, Descripcion_lugar, NombreP, Ref, CanS):
+    if Nombre == '' or Direccion == '' or Sexo == '' or Descripcion_lugar == '' or Contacto == '' or NombreP == '' or Ref == '' or CanS == '':
+        enter = input('Debe diligenciar toda la información solicitada <ENTER>')
+    else:
+        diccionario[Nombre] = {'Direccion': Direccion, 'Sexo': Sexo, 'Descripcion_lugar': Descripcion_lugar, 'Contacto': Contacto, 'NombreP': NombreP, 'Ref': Ref, 'CanS': CanS}
+        enter = input(f'\nLa persona {Nombre} ha registrado su pedido con éxito <ENTER>')
+
+def fnt_selector(op):
+    global Dicc_empresa
+    if op == '1':
+        os.system('cls')
+        Nombre = input('Nombre:  ')
+        Direccion = input('Direccion  ')
+        Sexo = input('Sexo:  ')
+        Contacto = input('Contacto: ')
+        Descripcion_lugar = input('Lugar: ')
+        NombreP = input('Nombre del producto: ')
+        Ref = input('Ref: ')
+        CanS = int(input('Cantidad a solicitar:  '))
+        fnt_registro(Dicc_empresa, Nombre, Direccion, Contacto, Sexo, Descripcion_lugar, NombreP, Ref, CanS)
+        
+while sw == True:
+    os.system('cls')
+    opcion = input('1. Registrar pedidos\n2. Mostrar pedidos\n3. Salir\n- >  ')
+    if opcion == '1':
+        fnt_selector(opcion)
+    elif opcion == '2':
+        os.system('cls')
+        print('\nCantidad de registros: ',len(Dicc_empresa),'\n')
+        for clave, valor in Dicc_empresa.items():
+            print(f"{clave}: {valor}")
+        enter = input('\n\nPresione ENTER para continuar...')
+    elif opcion == '3':
+        sw = False
